@@ -1,0 +1,64 @@
+.collection-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    transition: all 500ms;
+    grid-row: 2;   
+
+    .image {
+        height: 400px;
+        width: auto;
+        background-size: cover;
+        background-position: center;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 500ms;
+    }
+
+    .custom-button {
+        opacity: 0;
+        border-radius: 5px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 330px;
+
+    }
+
+    .button {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.content {
+    display: flex;
+    padding: 0.5rem;
+    justify-content: space-between;
+    
+    .title,
+    .price {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+}
+
+
+.collection-item:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+
+    .custom-button {
+        opacity: 100;
+        margin-top: 330px;
+    }
+
+    .image {
+        background: rgba(0,0,0,0.6) no-repeat center center/cover;
+        background-blend-mode: color;
+    
+    }
+}
+

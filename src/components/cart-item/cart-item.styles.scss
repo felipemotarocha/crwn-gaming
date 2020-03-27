@@ -1,0 +1,26 @@
+.cart-item {
+    height: 100px;
+    z-index: 6;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    margin-bottom: 10px;
+
+    .item-image {
+        height: 100%;
+        width: auto;
+        background-size: cover;
+        background-position: center;
+        border-radius: 5px;
+    }
+
+    .item-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .title {
+        font-size: 1rem;
+    }
+}
