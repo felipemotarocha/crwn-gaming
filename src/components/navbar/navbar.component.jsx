@@ -1,19 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import "./navbar.styles.css";
-import { auth } from '../../firebase/firebase.utils';
+import { auth } from "../../firebase/firebase.utils";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
 
-import CartIcon from '../cart-icon/cart-icon.component';
-import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
 class Navbar extends React.Component {
     render() {
         const { currentUser, hidden } = this.props;
         return (
             <div>
-
                 <nav id="navbar">
                     <div id="navbar-container">
                         <Link to="/">
@@ -29,27 +31,31 @@ class Navbar extends React.Component {
                             <Link to="/shop">
                                 <li>Shop</li>
                             </Link>
-                            {
-                                currentUser ?
-                                    <li style={{ cursor: 'pointer' }} onClick={() => auth.signOut()}>Sign Out</li>
-                                    : <Link to="/sign"><li>Sign In</li></Link>
-                            }
+                            {currentUser ? (
+                                <li
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => auth.signOut()}
+                                >
+                                    Sign Out
+                                </li>
+                            ) : (
+                                <Link to="/sign">
+                                    <li>Sign In</li>
+                                </Link>
+                            )}
                             <CartIcon />
                         </ul>
                     </div>
                 </nav>
-                {
-                    hidden ? ''
-                        : <CartDropdown />
-                }
+                {hidden ? "" : <CartDropdown />}
             </div>
         );
     }
 }
 
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-    currentUser,
-    hidden,
-})
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectCartHidden
+});
 
 export default connect(mapStateToProps)(Navbar);
